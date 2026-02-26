@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HarvestIQ - AI Decision Engine</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Background Elements (Light Theme) -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="glass-header hidden" id="mainHeader">
+            <div class="logo">
+                <i class="fa-solid fa-leaf"></i>
+                <h1>Harvest<span>IQ</span></h1>
+            </div>
+            <div class="header-actions">
+                <select id="langSelect" class="lang-dropdown">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="mr">मराठी</option>
+                </select>
+                <button id="btnLogout" class="btn btn-icon-small btn-outline-danger" title="Logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+
+            <!-- Auth Section (Login/Register) -->
+            <section class="card glass-card fade-in" id="authSection">
+                <div class="card-header text-center">
+                    <div class="logo-large">
+                        <i class="fa-solid fa-leaf"></i>
+                        <h1>Harvest<span>IQ</span></h1>
+                    </div>
+                    <h2 id="authTitle" data-i18n="login_title">Login to HarvestIQ</h2>
+                    <p id="authSubtitle" data-i18n="login_desc">Smart Agricultural Decision Engine</p>
+                </div>
+
+                <form id="authForm">
+                    <div class="input-group">
+                        <label data-i18n="lbl_username"><i class="fa-solid fa-user"></i> Username</label>
+                        <input type="text" id="username" required autocomplete="username">
+                    </div>
+
+                    <div class="input-group" style="margin-top: 15px;">
+                        <label data-i18n="lbl_password"><i class="fa-solid fa-lock"></i> Password</label>
+                        <input type="password" id="password" required autocomplete="current-password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="btnAuthSubmit">
+                        <i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="btn_login">Sign In</span>
+                    </button>
+
+                    <div class="auth-switch">
+                        <p>
+                            <span id="authSwitchText" data-i18n="no_account">Don't have an account?</span>
+                            <a href="#" id="authSwitchLink" data-i18n="register_link">Register here</a>
+                        </p>
+                    </div>
+                </form>
+            </section>
+
+
+            <!-- Input Card -->
+            <section class="card glass-card hidden slide-up" id="inputSection">
+                <div class="card-header">
+                    <h2 data-i18n="input_title">Crop & Soil Details</h2>
+                    <p data-i18n="input_desc">Enter parameters for the Nagpur Region</p>
+                </div>
+
+                <form id="predictionForm">
+
+                    <div class="form-grid">
+                        <!-- Crop Select -->
+                        <div class="input-group">
+                            <label data-i18n="lbl_crop"><i class="fa-solid fa-seedling"></i> Crop Type</label>
+                            <select id="crop" required>
+                                <option value="1" data-i18n="opt_cotton">Cotton</option>
+                                <option value="2" data-i18n="opt_soybean">Soybean</option>
+                                <option value="3" data-i18n="opt_wheat">Wheat</option>
+                                <option value="4" data-i18n="opt_rice">Rice</option>
+                                <option value="5" data-i18n="opt_tur">Tur</option>
+                                <option value="6" data-i18n="opt_chana">Chana</option>
+                                <option value="7" data-i18n="opt_maize">Maize</option>
+                                <option value="8" data-i18n="opt_orange">Orange</option>
+                            </select>
+                        </div>
+
+                        <!-- Soil Select -->
+                        <div class="input-group">
+                            <label data-i18n="lbl_soil"><i class="fa-solid fa-mound"></i> Soil Type</label>
+                            <select id="soil" required>
+                                <option value="1" data-i18n="opt_black_cotton">Black Cotton Soil</option>
+                                <option value="2" data-i18n="opt_alluvial">Alluvial Soil</option>
+                                <option value="3" data-i18n="opt_red">Red Soil</option>
+                                <option value="4" data-i18n="opt_laterite">Laterite Soil</option>
+                                <option value="5" data-i18n="opt_sandy">Sandy Loam</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label data-i18n="lbl_month"><i class="fa-regular fa-calendar-days"></i> Month</label>
+                            <select id="month" required>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7" selected>July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label data-i18n="lbl_fertilizer"><i class="fa-solid fa-flask"></i> Fertilizer
+                                (kg/acre)</label>
+                            <input type="number" id="fertilizer" value="50" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label data-i18n="lbl_storage"><i class="fa-solid fa-warehouse"></i> Storage Days</label>
+                            <input type="number" id="storage_days" value="5" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label data-i18n="lbl_demand"><i class="fa-solid fa-chart-line"></i> Market Demand
+                                (0-100)</label>
+                            <input type="number" id="demand" value="70" required>
+                        </div>
+
+                    </div>
+
+                    <hr class="divider">
+
+                    <div class="card-header weather-header">
+                        <div>
+                            <h2 data-i18n="weather_title">Local Weather</h2>
+                            <p id="locationDisplay" class="location-tag hidden"><i class="fa-solid fa-location-dot"></i>
+                                <span id="locationText"></span></p>
+                        </div>
+                        <button type="button" id="btnLocation" class="btn btn-secondary">
+                            <i class="fa-solid fa-location-crosshairs"></i> <span
+                                data-i18n="btn_location">Auto-Fill</span>
+                        </button>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label data-i18n="lbl_temp"><i class="fa-solid fa-temperature-half"></i> Temp (°C)</label>
+                            <input type="number" id="temperature" value="32.5" step="0.1" required>
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="lbl_rain"><i class="fa-solid fa-cloud-rain"></i> Rainfall (mm)</label>
+                            <input type="number" id="rainfall" value="120" step="0.1" required>
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="lbl_humidity"><i class="fa-solid fa-droplet"></i> Humidity (%)</label>
+                            <input type="number" id="humidity" value="65" step="0.1" required>
+                        </div>
+                        <div class="input-group">
+                            <label data-i18n="lbl_wind"><i class="fa-solid fa-wind"></i> Wind (km/h)</label>
+                            <input type="number" id="wind" value="12" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="btnPredict">
+                        <i class="fa-solid fa-bolt"></i> <span data-i18n="btn_predict">Analyze Risk & Yield</span>
+                    </button>
+
+                </form>
+            </section>
+
+            <!-- Loading Spinner -->
+            <div id="loading" class="hidden loader-container">
+                <div class="spinner"></div>
+                <p id="loadingText" data-i18n="processing">Processing...</p>
+            </div>
+
+            <!-- Results Section -->
+            <section class="card glass-card hidden slide-up" id="resultsSection">
+
+                <div class="results-header">
+                    <div>
+                        <h2 data-i18n="res_title">AI Smart Advisory</h2>
+                        <span id="riskBadge" class="badge">--</span>
+                    </div>
+                    <button id="btnSpeak" class="btn btn-icon pulse" title="Listen to Advisory">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+
+                <div class="score-grid">
+                    <div class="score-box">
+                        <i class="fa-solid fa-indian-rupee-sign icon-blue"></i>
+                        <span class="score-label" data-i18n="res_price">Expected Price</span>
+                        <h3 id="resPrice">--</h3>
+                    </div>
+                    <div class="score-box">
+                        <i class="fa-solid fa-wheat-awn icon-green"></i>
+                        <span class="score-label" data-i18n="res_yield">Est. Yield</span>
+                        <h3 id="resYield">--</h3>
+                    </div>
+                    <div class="score-box">
+                        <i class="fa-solid fa-bug icon-red"></i>
+                        <span class="score-label" data-i18n="res_pest">Pest Risk</span>
+                        <h3 id="resPest">--</h3>
+                    </div>
+                    <div class="score-box">
+                        <i class="fa-solid fa-bacteria icon-orange"></i>
+                        <span class="score-label" data-i18n="res_spoilage">Spoilage Risk</span>
+                        <h3 id="resSpoilage">--</h3>
+                    </div>
+                </div>
+
+                <!-- Warnings and Recs -->
+                <div class="alerts-container">
+                    <div class="alert-box warning-box" id="warningsBox">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="lbl_warnings">Regional
+                                Warnings</span></h4>
+                        <ul id="warningsList"></ul>
+                    </div>
+                    <div class="alert-box success-box" id="recsBox">
+                        <h4><i class="fa-regular fa-lightbulb"></i> <span data-i18n="lbl_recs">Recommendations</span>
+                        </h4>
+                        <ul id="recsList"></ul>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-outline" id="btnRecalculate">
+                    <i class="fa-solid fa-rotate-left"></i> <span data-i18n="btn_recalc">Recalculate</span>
+                </button>
+
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

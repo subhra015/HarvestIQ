@@ -1,0 +1,16 @@
+# Virtual env
+.venv/
+
+# Model files
+*.pkl
+*.joblib
+
+# Database
+*.db
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Research / datasets
+research/
